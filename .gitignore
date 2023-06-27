@@ -1,0 +1,161 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+
+local Window = Library.CreateLib("MiscHubV2", "Ocean")
+
+local Main = Window:NewTab("Main")
+local MainSection = Main:NewSection("Main")
+
+MainSection:NewToggle("Speed", "Speed", function(state)
+    if state then
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 75
+    else
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+    end
+end)
+
+MainSection:NewButton("Inf", "No Jump Delay", function()
+    local InfiniteJumpEnabled = true
+game:GetService("UserInputService").JumpRequest:connect(function()
+    if InfiniteJumpEnabled then
+        game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
+    end
+end)
+end)
+
+MainSection:NewButton("Legend", "Teleport", function()
+    _G.Sonic = true  --false = Off // true = On
+_G.Rebirth = true --false = Off // true = On [AutoRebirth]
+loadstring(game:HttpGet("https://gist.githubusercontent.com/LimurTempest/34d9c78e6090e5e683402e81b8a8a722/raw/a36b6f0667e34feb5d0e4af30c14bc82682d0fac/SonicRedesign_LegendsOfSpeed", true))()
+end)
+
+MainSection:NewButton("InfYield", "Troll", function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+end)
+
+MainSection:NewToggle("Hitbox", "Expand player hitbox", function(state)
+    if state then
+        loadstring(game:HttpGet("https://pastebin.com/raw/pML6wuLp"))()
+    else
+        loadstring(game:HttpGet("https://pastebin.com/raw/xX4WncvT"))()
+    end
+end)
+
+MainSection:NewButton("Aimbot", "Locks To Head", function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/1Gp9c57U"))()
+end)
+
+local BloxFruit = Window:NewTab("BloxFruit")
+local BloxFruitSection = BloxFruit:NewSection("Blox Fruit")
+
+BloxFruitSection:NewButton("Blck Hub", "Keyless", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/1f0yt/community/main/BLCK"))()
+end)
+
+local MurderVS_Sheriff = Window:NewTab("MurderVS_Sheriff")
+local MurderVS_SheriffSection = MurderVS_Sheriff:NewSection("MurderVS_Sheriff")
+
+MurderVS_SheriffSection:NewButton("Esp", "See Player Through wall", function()
+    local Settings = {
+	['Material'] = Enum.Material.Neon, -- Material
+	['Color'] = Color3.fromRGB(0,255,255), -- Color
+	['Transparency'] = 0.7 -- 0 to 1 Transparency
+}
+
+local ScreenGui = Instance.new('ScreenGui', game.CoreGui) -- Create screengui
+ScreenGui.IgnoreGuiInset = true
+
+local ViewportFrame = Instance.new('ViewportFrame', ScreenGui) -- Create viewport and define properties
+ViewportFrame.CurrentCamera = workspace.CurrentCamera
+ViewportFrame.Size = UDim2.new(1,0,1,0)
+ViewportFrame.BackgroundTransparency = 1
+ViewportFrame.ImageTransparency = Settings.Transparency
+
+local Chasms = {} -- Array for storing parts
+
+function generateChasm(player) -- functions that generates chasms for the player specififed
+	local Character = workspace:FindFirstChild(player.Name)
+	
+	if Character then
+		for _,Part in pairs(Character:GetChildren()) do
+			if Part:IsA('Part') or Part:IsA('MeshPart') then
+				local Chasm = Part:Clone()
+				
+				for _,Child in pairs(Chasm:GetChildren()) do
+					if Child:IsA('Decal') then
+						Child:Destroy()
+					end
+				end
+				
+				Chasm.Parent = ViewportFrame
+				Chasm.Material = Settings.Material
+				Chasm.Color = Settings.Color
+				Chasm.Anchored = true
+				
+				table.insert(Chasms, Chasm)
+			end
+		end
+	end
+end
+
+function clearChasms() -- remove all chasms
+	for _,Chasm in pairs(Chasms) do
+		Chasm:Destroy()
+	end
+	
+	Chasms = {}
+end
+
+while game:GetService('RunService').RenderStepped:Wait() do -- loop this process
+	clearChasms()
+	
+	for _,Player in pairs(game:GetService('Players'):GetPlayers()) do
+		if Player ~= game:GetService('Players').LocalPlayer then
+			generateChasm(Player)
+		end
+	end
+end
+end)
+
+MurderVS_SheriffSection:NewToggle("Hitbox", "Expand player hitbox", function(state)
+    if state then
+        loadstring(game:HttpGet("https://pastebin.com/raw/pML6wuLp"))()
+    else
+        loadstring(game:HttpGet("https://pastebin.com/raw/xX4WncvT"))()
+    end
+end)
+
+local Shindo = Window:NewTab("Shindo")
+local ShindoSection = Shindo:NewSection("Shindo")
+
+ShindoSection:NewButton("VG", "Fast", function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/1201for/V.G-Hub/main/V.Ghub'))()
+end)
+
+local Sonic = Window:NewTab("Sonic")
+local SonicSection = Sonic:NewSection("Sonic")
+
+SonicSection:NewButton("Beddie", "ButtonInfo", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/bebedi15/SRM-Scripts/main/Bebedi9960/SRMHub"))()
+end)
+
+local NinjaLegend = Window:NewTab("NinjaLegend")
+local NinjaLegendSection = NinjaLegend:NewSection("NinjaLegend")
+
+NinjaLegendSection:NewButton("Idk", "Enjoy", function()
+    loadstring(game:HttpGet"https://pastebin.com/raw/FCa86zXe")()
+end)
+
+local Arsenal = Window:NewTab("Arsenal")
+local ArsenalSection = Arsenal:NewSection("Arsenal")
+
+ArsenalSection:NewButton("Advance", "ButtonInfo", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/YellowGreg/Loadstring/main/arsenal4.lua"))()
+end)
+
+ArsenalSection:NewButton("Storm", "ButtonInfo", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/FurkUltra/UltraScripts/main/arsenal",true))()
+end)
+
+MainSection:NewKeybind("KeybindE", "Press e", Enum.KeyCode.E, function()
+	print("You just clicked the keybinds!")
+end)
